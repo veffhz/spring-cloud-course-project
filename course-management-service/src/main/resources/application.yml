@@ -1,0 +1,33 @@
+spring:
+  application:
+    name: course-service
+
+  main:
+    banner-mode: "off"
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/course_service?useUnicode=true&useLegacyDatetimeCode=false&serverTimezone=UTC&createDatabaseIfNotExist=true&allowPublicKeyRetrieval=true&useSSL=false
+    username: root
+    password: p@ssworb
+    driver: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+
+server:
+  port: 8001
+
+
+eureka:
+  client:
+    service-url:
+      default-zone: http://localhost:8761/eureka/
+
+  instance:
+    lease-renewal-interval-in-seconds: 30
+    lease-expiration-duration-in-seconds: 90
+
+ribbon:
+  eureka:
+    enabled: true
