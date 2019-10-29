@@ -5,6 +5,7 @@ import com.example.usermanagementservice.model.User;
 import com.example.usermanagementservice.service.UserService;
 
 import lombok.RequiredArgsConstructor;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.core.env.Environment;

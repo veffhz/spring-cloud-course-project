@@ -3,7 +3,9 @@ package com.example.usermanagementservice.service.impl;
 import com.example.usermanagementservice.model.User;
 import com.example.usermanagementservice.repository.UserRepository;
 import com.example.usermanagementservice.service.UserService;
+
 import lombok.RequiredArgsConstructor;
+
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
