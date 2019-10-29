@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: user-service
+
+  main:
+    banner-mode: "off"
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/user_service?useUnicode=true&useLegacyDatetimeCode=false&serverTimezone=UTC&createDatabaseIfNotExist=true&allowPublicKeyRetrieval=true&useSSL=false
+    username: user
+    password: pass1234
+    driver: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+
+server:
+  port: 8000
