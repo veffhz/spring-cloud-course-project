@@ -23,16 +23,16 @@ public class UserDetailServiceImpl implements UserDetailsService {
     private final UserRepository userRepository;
 
     @Override
-    public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
-        User user = userRepository.findByUserName(userName).orElse(null);
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        User user = userRepository.findByUsername(username).orElse(null);
         if (Objects.isNull(user)) {
-            throw new UsernameNotFoundException(userName);
+            throw new UsernameNotFoundException(username);
         }
 
         Set<GrantedAuthority> authorities = Collections.singleton(
                 new SimpleGrantedAuthority(user.getRole().name())
         );
 
-        return new org.springframework.security.core.userdetails.User(userName, user.getPassword(), authorities);
+        return new org.springframework.security.core.userdetails.User(username, user.getPassword(), authorities);
     }
 }

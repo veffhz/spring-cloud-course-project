@@ -6,6 +6,6 @@ import java.util.List;
 
 public interface UserService {
     User save(User user);
-    User findByUserName(String username);
+    User findByUsername(String username);
     List<String> findUsers(List<Long> idList);
 }
