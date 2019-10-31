@@ -56,14 +56,16 @@ public class UserApi {
         log.info("save user {}", user);
         if (userService.findByUsername(user.getUsername()) != null) {
             return new ResponseEntity<>(HttpStatus.CONFLICT);
+        } else {
+            user.setRole(Role.ROLE_USER);
+            user.setEnabled(true);
         }
-        user.setRole(Role.USER);
         return new ResponseEntity<>(userService.save(user), HttpStatus.CREATED);
     }
 
     @GetMapping("/service/login")
     public ResponseEntity<?> getUser(Principal principal) {
-        log.info("login {}", principal);
+        log.info("principal {}", principal);
         if (principal == null || principal.getName() == null) {
             return new ResponseEntity<>(HttpStatus.OK);
         }
