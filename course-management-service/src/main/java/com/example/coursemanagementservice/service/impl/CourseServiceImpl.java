@@ -1,5 +1,6 @@
 package com.example.coursemanagementservice.service.impl;
 
+import com.example.coursemanagementservice.exception.CourseNotFoundException;
 import com.example.coursemanagementservice.model.Course;
 import com.example.coursemanagementservice.model.Transaction;
 import com.example.coursemanagementservice.repository.CourseRepository;
@@ -26,7 +27,8 @@ public class CourseServiceImpl implements CourseService {
 
     @Override
     public Course findCourseById(Long courseId) {
-        return courseRepository.findById(courseId).orElse(null);
+        return courseRepository.findById(courseId)
+                .orElseThrow(() -> new CourseNotFoundException(courseId));
     }
 
     @Override

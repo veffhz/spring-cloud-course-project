@@ -15,6 +15,7 @@
             author VARCHAR(255) NOT NULL,
             category VARCHAR(255),
             publish_date DATE,
+            price DOUBLE(9,2),
             CONSTRAINT pk_id PRIMARY KEY (id)
             );
         </sql>
@@ -39,11 +40,11 @@
     </changeSet>
     <changeSet id="3" author="sha">
         <sql>
-            INSERT INTO course (title, author, category, publish_date) VALUES('Microservices', 'Instructor 1', 'Programming', NOW());
-            INSERT INTO course (title, author, category, publish_date) VALUES('Java Programming', 'Instructor 2', 'Programming', NOW());
-            INSERT INTO course (title, author, category, publish_date) VALUES('Web Development', 'Instructor 3', 'Web', NOW());
-            INSERT INTO course (title, author, category, publish_date) VALUES('Mobile Application', 'Instructor 4', 'Mobile', NOW());
-            INSERT INTO course (title, author, category, publish_date) VALUES('Amazon Web Services', 'Instructor 5', 'Administration', NOW());
+            INSERT INTO course (title, author, category, publish_date, price) VALUES('Microservices', 'Instructor 1', 'Programming', NOW(), 200.22);
+            INSERT INTO course (title, author, category, publish_date, price) VALUES('Java Programming', 'Instructor 2', 'Programming', NOW(), 130.00);
+            INSERT INTO course (title, author, category, publish_date, price) VALUES('Web Development', 'Instructor 3', 'Web', NOW(), 170.32);
+            INSERT INTO course (title, author, category, publish_date, price) VALUES('Mobile Application', 'Instructor 4', 'Mobile', NOW(), 165.98);
+            INSERT INTO course (title, author, category, publish_date, price) VALUES('Amazon Web Services', 'Instructor 5', 'Administration', NOW(), 144.99);
         </sql>
         <rollback>
             TRUNCATE TABLE course;
