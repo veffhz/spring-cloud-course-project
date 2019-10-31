@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import axios from 'axios';
 import { BehaviorSubject } from 'rxjs';
 
@@ -20,6 +21,7 @@ class UserService {
         };
 
         return axios.get(API_URL + 'login', { headers: headers }).then(response => {
+            console.warn(response);
             localStorage.setItem('currentUser', JSON.stringify(response.data));
             currentUserSubject.next(response.data);
         });

@@ -24,6 +24,7 @@
                             <th scope="col">Course Title</th>
                             <th scope="col">Author</th>
                             <th scope="col">Category</th>
+                            <th scope="col">Price</th>
                             <th scope="col">Enroll Date</th>
                         </tr>
                     </thead>
@@ -33,6 +34,7 @@
                             <td>{{item.course.title}}</td>
                             <td>{{item.course.author}}</td>
                             <td>{{item.course.category}}</td>
+                            <td>{{item.course.price}}</td>
                             <td>{{item.dateOfIssue}}</td>
                         </tr>
                     </tbody>
