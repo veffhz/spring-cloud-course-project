@@ -9,7 +9,7 @@ java 8-11, gradle, mySql, liquibase, eureka (discovery service).
 #### run
 `./gradlew bootRun` or `java -jar build/libs/course-management-service.jar`
 
-### documentation
+#### documentation
 
 Domain model:
 * course
