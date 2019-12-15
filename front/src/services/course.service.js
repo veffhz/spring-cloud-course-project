@@ -1,6 +1,8 @@
 import axios from 'axios';
+import { BehaviorSubject } from 'rxjs';
 
-const API_URL = 'http://192.168.1.39:8765/api/course/service/';
+const API_URL = 'http://localhost:8765/api/course/service/';
+const accessToken = new BehaviorSubject(JSON.parse(localStorage.getItem('accessToken')));
 
 class CourseService {
 
@@ -14,7 +16,10 @@ class CourseService {
     }
 
     filterStudents(courseId) {
-        return axios.get(API_URL + 'course/' + courseId, { headers: { 'Content-Type': 'application/json; charset=UTF-8' } });
+        return axios.get(API_URL + 'course/' + courseId, { headers: { 
+            'Content-Type': 'application/json; charset=UTF-8',
+            'Token': accessToken.value
+        } });
     }
 
     findAllCourses() {
