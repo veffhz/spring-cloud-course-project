@@ -66,7 +66,7 @@ public class CourseApi {
     }
 
     @GetMapping("/service/course/{courseId}")
-    public ResponseEntity<?> findStudentsOfCourse(@PathVariable Long courseId) {
+    public ResponseEntity<?> findStudentsOfCourse(@PathVariable Long courseId, @RequestHeader("Token") String token) {
         log.info("get students by userId {}", courseId);
         List<Transaction> transactions = courseService.findTransactionsOfCourse(courseId);
         if (CollectionUtils.isEmpty(transactions)) {
@@ -76,7 +76,7 @@ public class CourseApi {
                 .map(Transaction::getUserId)
                 .collect(Collectors.toList());
 
-        List<String> students = userClient.getUserNames(userIdList);
+        List<String> students = userClient.getUserNames(userIdList, "Bearer " + token);
         return ResponseEntity.ok(students);
     }
 }
