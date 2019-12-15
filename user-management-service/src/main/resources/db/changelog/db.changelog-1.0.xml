@@ -16,11 +16,23 @@
                 name VARCHAR(255) NOT NULL,
                 role VARCHAR(10) NOT NULL,
                 enabled TINYINT(1) NOT NULL,
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                 CONSTRAINT pk_id PRIMARY KEY (id)
             );
         </sql>
         <rollback>
             DROP TABLE users;
+        </rollback>
+    </changeSet>
+    <changeSet id="2" author="senol">
+        <sql>
+            INSERT INTO users (username, password, name, role, enabled) VALUES('user',
+            '$2a$10$UXuwje81luPR/mM/d6Vh4.fLyzmINDZNeG3fBs7dncGAQu8Ut4sSe', 'User', 'ROLE_USER', 1);
+            INSERT INTO users (username, password, name, role, enabled) VALUES('admin',
+            '$2a$10$6PX.CDrzthTWmcdkX/Pmk.9X1yVVtYU1ob43FaWkOFvcjWrJKlBRG', 'Admin', 'ROLE_ADMIN', 1);
+        </sql>
+        <rollback>
+            TRUNCATE TABLE users;
         </rollback>
     </changeSet>
 </databaseChangeLog>

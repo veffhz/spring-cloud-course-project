@@ -1,7 +1,5 @@
 package com.example.usermanagementservice.api;
 
-import com.example.usermanagementservice.model.Role;
-import com.example.usermanagementservice.model.User;
 import com.example.usermanagementservice.service.UserService;
 
 import lombok.RequiredArgsConstructor;
@@ -17,7 +15,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.security.Principal;
 import java.util.List;
 
 @Slf4j
@@ -49,27 +46,6 @@ public class UserApi {
     public ResponseEntity<?> getServices() {
         log.debug("get services");
         return new ResponseEntity<>(discoveryClient.getServices(), HttpStatus.OK);
-    }
-
-    @PostMapping("/service/registration")
-    public ResponseEntity<?> saveUser(@RequestBody User user) {
-        log.info("save user {}", user);
-        if (userService.findByUsername(user.getUsername()) != null) {
-            return new ResponseEntity<>(HttpStatus.CONFLICT);
-        } else {
-            user.setRole(Role.ROLE_USER);
-            user.setEnabled(true);
-        }
-        return new ResponseEntity<>(userService.save(user), HttpStatus.CREATED);
-    }
-
-    @GetMapping("/service/login")
-    public ResponseEntity<?> getUser(Principal principal) {
-        log.info("principal {}", principal);
-        if (principal == null || principal.getName() == null) {
-            return new ResponseEntity<>(HttpStatus.OK);
-        }
-        return ResponseEntity.ok(userService.findByUsername(principal.getName()));
     }
 
     @PostMapping("/service/names")

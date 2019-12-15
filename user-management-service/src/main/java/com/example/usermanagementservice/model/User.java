@@ -1,10 +1,12 @@
 package com.example.usermanagementservice.model;
 
 import lombok.Data;
+
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.Collections;
 
@@ -12,6 +14,15 @@ import java.util.Collections;
 @Entity
 @Table(name = "users")
 public class User implements UserDetails {
+
+    public User() {
+    }
+
+    public User(Long id, String name, String username) {
+        this.id = id;
+        this.name = name;
+        this.username = username;
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,6 +40,9 @@ public class User implements UserDetails {
     @Enumerated(value = EnumType.STRING)
     @Column(name = "role")
     private Role role;
+
+    @Column(name = "created_at")
+    private LocalDateTime createdDate;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
